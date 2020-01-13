@@ -16,11 +16,10 @@ import com.training.pom.RegisterPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class LoginTests {
+public class RegistrationTests2 {
 
 	private WebDriver driver;
 	private String baseUrl;
-	private LoginPOM loginPOM;
 	private RegisterPOM registerPOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
@@ -35,7 +34,6 @@ public class LoginTests {
 	@BeforeMethod
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
-		loginPOM = new LoginPOM(driver);
 		registerPOM = new RegisterPOM(driver);
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver); 
@@ -48,14 +46,7 @@ public class LoginTests {
 		Thread.sleep(1000);
 		driver.quit();
 	}
-	@Test (enabled = false)
-	public void validLoginTest() throws InterruptedException {
-		loginPOM.sendUserName("admin");
-		loginPOM.sendPassword("admin@123");
-		loginPOM.clickLoginBtn(); 
-		loginPOM.verifyPageTitle();
-		screenShot.captureScreenShot("First");  
-	}
+
 	@Test (enabled = false)
 	public void Registraion() throws InterruptedException
 	{
@@ -65,6 +56,5 @@ public class LoginTests {
 		registerPOM.sendLastName("Marimuthu");
 	
 	}
-	
 	
 }

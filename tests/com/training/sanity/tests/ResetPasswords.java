@@ -13,15 +13,15 @@ import org.testng.annotations.Test;
 import com.training.generics.ScreenShot;
 import com.training.pom.LoginPOM;
 import com.training.pom.RegisterPOM;
+import com.training.pom.ResetPasswordPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class LoginTests {
+public class ResetPasswords {
 
 	private WebDriver driver;
 	private String baseUrl;
-	private LoginPOM loginPOM;
-	private RegisterPOM registerPOM;
+	private ResetPasswordPOM resetPasswordPOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
 
@@ -35,8 +35,7 @@ public class LoginTests {
 	@BeforeMethod
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
-		loginPOM = new LoginPOM(driver);
-		registerPOM = new RegisterPOM(driver);
+		resetPasswordPOM = new ResetPasswordPOM(driver);
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver); 
 		// open the browser 
@@ -48,23 +47,13 @@ public class LoginTests {
 		Thread.sleep(1000);
 		driver.quit();
 	}
-	@Test (enabled = false)
-	public void validLoginTest() throws InterruptedException {
-		loginPOM.sendUserName("admin");
-		loginPOM.sendPassword("admin@123");
-		loginPOM.clickLoginBtn(); 
-		loginPOM.verifyPageTitle();
-		screenShot.captureScreenShot("First");  
-	}
-	@Test (enabled = false)
-	public void Registraion() throws InterruptedException
+
+	@Test
+	public void RestPassword() throws InterruptedException
 	{
-		registerPOM.clickRegister();
-	    registerPOM.sendEmail("bharath@gmail.com");
-		registerPOM.sendFirstName("Bharath");
-		registerPOM.sendLastName("Marimuthu");
-	
+	resetPasswordPOM.clickRegister();
+	resetPasswordPOM.clickLostPasswordLink();
+	resetPasswordPOM.setEmail("manzoor@gmail.com");
 	}
-	
 	
 }
